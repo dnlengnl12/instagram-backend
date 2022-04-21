@@ -4,9 +4,9 @@ Instaclen Backend.
 
 ## User:
 
-- [ ] Create Account
-- [ ] See Profile
-- [ ] Login
+- [X] Create Account
+- [X] See Profile
+- [X] Login
 - [ ] Edit Profile
 - [ ] Follow User
 - [ ] Unfollow User
