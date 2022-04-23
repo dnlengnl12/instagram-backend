@@ -11,7 +11,7 @@ Instaclen Backend.
 - [X] Follow User
 - [X] Unfollow User
 - [X] Change Avatar (Image Upload)
-- [] See Followers and See Following w/ Pagination
+- [X] See Followers and See Following w/ Pagination
 - [] See Following and See Followers w/ Pagination
 - [] Computed Fields
 - [] Search Users
