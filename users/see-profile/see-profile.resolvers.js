@@ -5,6 +5,10 @@ export default {
         seeProfile: (_, {userName}) => client.user.findUnique({
             where: {
                 userName
+            },
+            include: {
+                following: true,
+                followers: true
             }
         })
     },

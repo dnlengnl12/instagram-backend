@@ -7,7 +7,11 @@ Instaclen Backend.
 - [X] Create Account
 - [X] See Profile
 - [X] Login
-- [ ] Edit Profile
-- [ ] Follow User
-- [ ] Unfollow User
-- [ ] Change Avatar (Image Upload)
+- [X] Edit Profile
+- [X] Follow User
+- [X] Unfollow User
+- [X] Change Avatar (Image Upload)
+- [] See Followers and See Following w/ Pagination
+- [] See Following and See Followers w/ Pagination
+- [] Computed Fields
+- [] Search Users
