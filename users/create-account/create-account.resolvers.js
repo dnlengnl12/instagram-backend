@@ -26,10 +26,8 @@ export default {
           throw new Error("This username/email is already taken.");
         }
 
-        console.log(existingUser);
         // hash password
         const uglyPassword = await bcrypt.hash(password, 10);
-        console.log(uglyPassword);
 
         // save and return the user
         return client.user.create({

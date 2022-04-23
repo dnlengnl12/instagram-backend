@@ -1,6 +1,7 @@
 import { gql } from "apollo-server";
 
 export default gql`
+scalar Upload
 type User {
     id: Int!
     firstName: String!
@@ -9,5 +10,7 @@ type User {
     email: String!
     createdAt: String!
     updatedAt: String!
+    bio: String
+    avatar: String
   }
 `;
