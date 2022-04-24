@@ -1,8 +1,8 @@
 import { gql } from "apollo-server";
 
 export default gql`
-scalar Upload
-type User {
+  scalar Upload
+  type User {
     id: Int!
     firstName: String!
     lastName: String
@@ -12,6 +12,7 @@ type User {
     updatedAt: String!
     bio: String
     avatar: String
+    photos: [Photo]
     following: [User]
     followers: [User]
     totalFollowing: Int!

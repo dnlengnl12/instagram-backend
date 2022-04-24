@@ -24,35 +24,31 @@ export default {
         },
       });
     },
-    isMe: ({ id }, _, { loggedInUser }) => {
-      if (!loggedInUser) {
-        return false;
-      }
-      return id === loggedInUser.id;
-    },
+    isMe: ({ id }, _, { loggedInUser }) => id === loggedInUser?.id,
     isFollowing: async ({ id }, _, { loggedInUser }) => {
       if (!loggedInUser) {
         return false;
       }
-    //   const exists = await client.user
-    //     .findUnique({ where: { userName: loggedInUser.userName } })
-    //     .following({
-    //       where: {
-    //         id,
-    //       },
-    //     });
+      //   const exists = await client.user
+      //     .findUnique({ where: { userName: loggedInUser.userName } })
+      //     .following({
+      //       where: {
+      //         id,
+      //       },
+      //     });
 
-        const exists = await client.user.count({
-            where: {
-                userName: loggedInUser.userName,
-                following: {
-                    some: {
-                        id
-                    }
-                }
-            }
-        })
-        return Boolean(exists);
+      const exists = await client.user.count({
+        where: {
+          userName: loggedInUser.userName,
+          following: {
+            some: {
+              id,
+            },
+          },
+        },
+      });
+      return Boolean(exists);
     },
+    photos: ({ id }) => client.user.findUnique({ where: { id } }).photos(),
   },
 };

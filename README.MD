@@ -19,16 +19,27 @@ Instaclen Backend.
 ## Photos
 
 - [X] Upload Photo (Parse #)
-- [] Like / Unlike photo
+- [X] Like / Unlike photo
 - [X] See Photo
-- [] Edit Photo
-- [] See Photo Likes
-- [] See Feed
-- [] Search Photos
-- [] See Hashtags
+- [X] Edit Photo
+- [X] See Photo Likes
+- [X] See Feed
+- [X] Search Photos
+- [X] See Hashtags
+- [X] See Photo Comments
+- [X] Is Mine (Delete Photo)
+
 
 ## Comments
 
-- [] Comment on Photo
-- [] Edit Comment
-- [] Delete Comment
+- [X] Comment on Photo
+- [X] Edit Comment
+- [X] Delete Comment
+
+## Refactor
+
+- [X] Mutation Responses
+
+## Extras
+
+- [X] S3 Image Upload
