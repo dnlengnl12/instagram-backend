@@ -12,6 +12,23 @@ Instaclen Backend.
 - [X] Unfollow User
 - [X] Change Avatar (Image Upload)
 - [X] See Followers and See Following w/ Pagination
-- [] See Following and See Followers w/ Pagination
-- [] Computed Fields
-- [] Search Users
+- [X] See Following and See Followers w/ Pagination
+- [X] Computed Fields
+- [X] Search Users
+
+## Photos
+
+- [X] Upload Photo (Parse #)
+- [] Like / Unlike photo
+- [X] See Photo
+- [] Edit Photo
+- [] See Photo Likes
+- [] See Feed
+- [] Search Photos
+- [] See Hashtags
+
+## Comments
+
+- [] Comment on Photo
+- [] Edit Comment
+- [] Delete Comment

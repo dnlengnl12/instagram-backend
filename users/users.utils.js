@@ -30,6 +30,11 @@ export const protectedResolver = (ourResolver) => (root, args, context, info) =>
     return ourResolver(root, args, context, info);
 }
 
+export const offsetPagination = (pageSize, totalData, where, options) => {
+    const totalPages = Math.ceil(totalData/pageSize)
+    const {method} = options;
+}
+
 // export function protectedResolver(ourResolver) {
 //     return function(root, args, context, info) {
 //         if(!context.loggedInUser) {

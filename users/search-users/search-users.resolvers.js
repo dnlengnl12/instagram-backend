@@ -1,5 +1,5 @@
 import client from "../../client"
-
+//todo : search pagination
 export default {
     Query: {
         searchUsers: async(_, {keyword}) => {
