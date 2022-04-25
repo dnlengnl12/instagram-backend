@@ -43,3 +43,11 @@ Instaclen Backend.
 ## Extras
 
 - [X] S3 Image Upload
+
+## DMs
+
+- [] Create Room
+- [] Get Room
+- [] Send Message
+- [] See Message
+- [] Realtime Messages
