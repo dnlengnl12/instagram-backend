@@ -9,13 +9,33 @@ export default {
           roomId: id,
         },
       }),
-    unreadTotal: () => 0,
-    //   client.user.findMany({
-    //     where: {
-    //       rooms: {
-    //           id,
-    //       },
-    //     },
-    //   }),
+    unreadTotal: async ({ id }, _, { loggedInUser }) => {
+      if (!loggedInUser) {
+        return 0;
+      }
+      const unread = await client.message.count({
+        where: {
+          read: false,
+          roomId: id,
+          user: {
+            id: {
+              not: loggedInUser.id,
+            },
+          },
+        },
+      });
+      return unread;
+    },
+  },
+  Message: {
+    user: async ({ id }) => client.message.findUnique({ where: { id } }).user(),
   },
 };
+
+//   client.user.findMany({
+//     where: {
+//       rooms: {
+//           id,
+//       },
+//     },
+//   }),
