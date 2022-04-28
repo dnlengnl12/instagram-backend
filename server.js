@@ -15,7 +15,6 @@ const PORT = process.env.PORT;
 const startServer = async () => {
   const app = express();
   const httpServer = createServer(app);
-
   app.use(graphqlUploadExpress());
   app.use("/static", express.static("uploads"));
   app.use(logger("tiny"));
@@ -31,10 +30,12 @@ const startServer = async () => {
     resolvers,
     typeDefs,
     context: async ({ req }) => {
-      return {
-        loggedInUser: await getUser(req.headers.authorization),
-        protectResolver,
-      };
+      if (req) {
+        return {
+          loggedInUser: await getUser(req.headers.authorization),
+          protectResolver,
+        };
+      }
     },
     plugins: [
       ApolloServerPluginDrainHttpServer({ httpServer }),
@@ -54,8 +55,13 @@ const startServer = async () => {
 
   server.applyMiddleware({ app });
 
-  await new Promise((func) => app.listen({ port: PORT }, func));
-  console.log(`server: http://localhost:${PORT}${server.graphqlPath}`);
+  httpServer.listen(PORT, () => {
+    console.log(
+      `Server is now running on http://localhost:${PORT}${server.graphqlPath}`
+    );
+  });
+  // await new Promise((func) => app.listen({ port: PORT }, func));
+  // console.log(`server: http://localhost:${PORT}${server.graphqlPath}`);
 };
 
 startServer();

@@ -4,7 +4,7 @@ import pubsub from "../../pubsub";
 export default {
   Subscription: {
     roomUpdates: {
-      subscrib: () => pubsub.asyncIterator(NEW_MESSAGE),
+      subscrib: () => pubsub.asyncIterator(["ROOM_UPDATES"]),
     },
   },
 };
