@@ -1,0 +1,26 @@
+{
+    "sourceFile": "users/me/me.resolvers.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1651806517420,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1651806548814,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,14 @@\n+import client from \"../../client\";\r\n import { protectedResolver } from \"../users.utils\";\r\n \r\n export default {\r\n \tQuery: {\r\n-\t\tme: protectedResolver(async (_, __, { loggedInUser }) => {}),\r\n+\t\tme: protectedResolver(async (_, __, { loggedInUser }) => {\r\n+\t\t\tclient.user.findUnique({\r\n+\t\t\t\twhere: {\r\n+\t\t\t\t\tid: loggedInUser.id,\r\n+\t\t\t\t},\r\n+\t\t\t});\r\n+\t\t}),\r\n \t},\r\n };\r\n"
+                },
+                {
+                    "date": 1651806665177,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n \r\n export default {\r\n \tQuery: {\r\n \t\tme: protectedResolver(async (_, __, { loggedInUser }) => {\r\n-\t\t\tclient.user.findUnique({\r\n+\t\t\treturn client.user.findUnique({\r\n \t\t\t\twhere: {\r\n \t\t\t\t\tid: loggedInUser.id,\r\n \t\t\t\t},\r\n \t\t\t});\r\n"
+                }
+            ],
+            "date": 1651806517420,
+            "name": "Commit-0",
+            "content": "import { protectedResolver } from \"../users.utils\";\r\n\r\nexport default {\r\n\tQuery: {\r\n\t\tme: protectedResolver(async (_, __, { loggedInUser }) => {}),\r\n\t},\r\n};\r\n"
+        }
+    ]
+}
