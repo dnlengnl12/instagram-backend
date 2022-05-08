@@ -1,0 +1,18 @@
+{
+    "sourceFile": "photos/photos.resolvers.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1652012228049,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1652012228049,
+            "name": "Commit-0",
+            "content": "import client from \"../client\";\r\n\r\nexport default {\r\n\tPhoto: {\r\n\t\tuser: ({ userId }) => client.user.findUnique({ where: { id: userId } }),\r\n\t\thashtags: ({ id }) =>\r\n\t\t\tclient.hashtag.findMany({\r\n\t\t\t\twhere: {\r\n\t\t\t\t\tphotos: {\r\n\t\t\t\t\t\tsome: {\r\n\t\t\t\t\t\t\tid,\r\n\t\t\t\t\t\t},\r\n\t\t\t\t\t},\r\n\t\t\t\t},\r\n\t\t\t}),\r\n\t\tlikes: ({ id }) => client.like.count({ where: { photoId: id } }),\r\n\t\tcomments: ({ id }) => client.comment.count({ where: { photoId: id } }),\r\n\t\tisMine: ({ userId }, _, { loggedInUser }) => userId === loggedInUser?.id,\r\n\t\tisLiked: async ({ id }, _, { loggedInUser }) => {\r\n\t\t\tif (!loggedInUser) {\r\n\t\t\t\treturn false;\r\n\t\t\t}\r\n\t\t\tconst ok = await client.like.findUnique({\r\n\t\t\t\twhere: {\r\n\t\t\t\t\tphotoId_userId: {\r\n\t\t\t\t\t\tphotoId: id,\r\n\t\t\t\t\t\tuserId: loggedInUser.id,\r\n\t\t\t\t\t},\r\n\t\t\t\t},\r\n\t\t\t\tselect: {\r\n\t\t\t\t\tid: true,\r\n\t\t\t\t},\r\n\t\t\t});\r\n\t\t\tif (ok) {\r\n\t\t\t\treturn true;\r\n\t\t\t}\r\n\t\t\treturn false;\r\n\t\t},\r\n\t},\r\n\tHashtag: {\r\n\t\tphotos: ({ id }, { page }, { loggedInUser }) => {\r\n\t\t\tconsole.log(args);\r\n\t\t\treturn client.hashtag\r\n\t\t\t\t.findUnique({\r\n\t\t\t\t\twhere: {\r\n\t\t\t\t\t\tid,\r\n\t\t\t\t\t},\r\n\t\t\t\t})\r\n\t\t\t\t.photos();\r\n\t\t},\r\n\t\ttotalPhotos: ({ id }) =>\r\n\t\t\tclient.photo.count({\r\n\t\t\t\twhere: {\r\n\t\t\t\t\thashtags: {\r\n\t\t\t\t\t\tsome: {\r\n\t\t\t\t\t\t\tid,\r\n\t\t\t\t\t\t},\r\n\t\t\t\t\t},\r\n\t\t\t\t},\r\n\t\t\t}),\r\n\t},\r\n};\r\n"
+        }
+    ]
+}

@@ -1,0 +1,22 @@
+{
+    "sourceFile": "photos/photos.typeDefs.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1652012079554,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1652012251628,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n \t\tupdatedAt: String!\r\n \t\tlikes: Int!\r\n \t\tisMine: Boolean!\r\n \t\tcomments: Int!\r\n-\t\tisLikes: Boolean!\r\n+\t\tisLiked: Boolean!\r\n \t}\r\n \r\n \ttype Hashtag {\r\n \t\tid: Int!\r\n"
+                }
+            ],
+            "date": 1652012079554,
+            "name": "Commit-0",
+            "content": "import { gql } from \"apollo-server-express\";\r\n\r\nexport default gql`\r\n\ttype Photo {\r\n\t\tid: Int!\r\n\t\tuser: User!\r\n\t\tfile: String!\r\n\t\tcaption: String\r\n\t\thashtags: [Hashtag]\r\n\t\tcreatedAt: String!\r\n\t\tupdatedAt: String!\r\n\t\tlikes: Int!\r\n\t\tisMine: Boolean!\r\n\t\tcomments: Int!\r\n\t\tisLikes: Boolean!\r\n\t}\r\n\r\n\ttype Hashtag {\r\n\t\tid: Int!\r\n\t\thashtag: String!\r\n\t\tphotos(page: Int!): [Photo]\r\n\t\ttotalPhotos: Int!\r\n\t\tcreatedAt: String!\r\n\t\tupdatedAt: String!\r\n\t}\r\n\r\n\ttype Like {\r\n\t\tid: Int!\r\n\t\tphoto: Photo!\r\n\t\tcreatedAt: String!\r\n\t\tupdatedAt: String!\r\n\t}\r\n`;\r\n"
+        }
+    ]
+}
