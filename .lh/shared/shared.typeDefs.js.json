@@ -1,0 +1,18 @@
+{
+    "sourceFile": "shared/shared.typeDefs.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1652624102505,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1652624102505,
+            "name": "Commit-0",
+            "content": "import { gql } from \"apollo-server-express\";\r\n\r\nexport default gql`\r\n\ttype MutationResponse {\r\n\t\tok: Boolean!\r\n\t\terror: String\r\n\t\tid: Int\r\n\t}\r\n`;\r\n"
+        }
+    ]
+}

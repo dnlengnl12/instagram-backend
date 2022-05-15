@@ -1,0 +1,26 @@
+{
+    "sourceFile": "users/login/login.resolvers.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1652277995085,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1652278082869,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,9 @@\n \t\t\t\t\tok: false,\r\n \t\t\t\t\terror: \"User not found.\",\r\n \t\t\t\t};\r\n \t\t\t}\r\n+\t\t\tconsole.log(user);\r\n \t\t\t// check password with args.password\r\n \t\t\tconst passwordOk = await bcrypt.compare(password, user.password);\r\n \t\t\tconsole.log(passwordOk);\r\n \t\t\tif (!passwordOk) {\r\n"
+                },
+                {
+                    "date": 1652278231574,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,12 +13,12 @@\n \t\t\t\t\tok: false,\r\n \t\t\t\t\terror: \"User not found.\",\r\n \t\t\t\t};\r\n \t\t\t}\r\n-\t\t\tconsole.log(user);\r\n+\r\n \t\t\t// check password with args.password\r\n \t\t\tconst passwordOk = await bcrypt.compare(password, user.password);\r\n-\t\t\tconsole.log(passwordOk);\r\n+\r\n \t\t\tif (!passwordOk) {\r\n \t\t\t\treturn {\r\n \t\t\t\t\tok: false,\r\n \t\t\t\t\terror: \"Incorrect password.\",\r\n"
+                }
+            ],
+            "date": 1652277995085,
+            "name": "Commit-0",
+            "content": "import client from \"../../client\";\r\nimport bcrypt from \"bcrypt\";\r\nimport jsonwebtoken from \"jsonwebtoken\";\r\nexport default {\r\n\tMutation: {\r\n\t\tlogin: async (_, { userName, password }) => {\r\n\t\t\t// find user with args.userName\r\n\t\t\tconst user = await client.user.findFirst({\r\n\t\t\t\twhere: { userName },\r\n\t\t\t});\r\n\t\t\tif (!user) {\r\n\t\t\t\treturn {\r\n\t\t\t\t\tok: false,\r\n\t\t\t\t\terror: \"User not found.\",\r\n\t\t\t\t};\r\n\t\t\t}\r\n\t\t\t// check password with args.password\r\n\t\t\tconst passwordOk = await bcrypt.compare(password, user.password);\r\n\t\t\tconsole.log(passwordOk);\r\n\t\t\tif (!passwordOk) {\r\n\t\t\t\treturn {\r\n\t\t\t\t\tok: false,\r\n\t\t\t\t\terror: \"Incorrect password.\",\r\n\t\t\t\t};\r\n\t\t\t}\r\n\t\t\t// issue a token and send it to the user\r\n\t\t\tconst Authorization = await jsonwebtoken.sign(\r\n\t\t\t\t{ id: user.id },\r\n\t\t\t\tprocess.env.SECRET_KEY\r\n\t\t\t\t// {\r\n\t\t\t\t//   expiresIn: \"2 days\",\r\n\t\t\t\t// }\r\n\t\t\t);\r\n\r\n\t\t\treturn {\r\n\t\t\t\tok: true,\r\n\t\t\t\tAuthorization,\r\n\t\t\t};\r\n\t\t},\r\n\t},\r\n};\r\n"
+        }
+    ]
+}

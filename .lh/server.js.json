@@ -1,0 +1,18 @@
+{
+    "sourceFile": "server.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1652278348426,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1652278348426,
+            "name": "Commit-0",
+            "content": "require(\"dotenv\").config();\r\nimport { ApolloServer } from \"apollo-server-express\";\r\nimport schema, { typeDefs, resolvers } from \"./schema\";\r\nimport { getUser, protectResolver } from \"./users/users.utils\";\r\nimport { graphqlUploadExpress } from \"graphql-upload\";\r\nimport express from \"express\";\r\nimport logger from \"morgan\";\r\nimport pubsub from \"./pubsub\";\r\nimport { createServer, Server } from \"http\";\r\nimport { WebSocketServer } from \"ws\";\r\nimport { ApolloServerPluginDrainHttpServer } from \"apollo-server-core\";\r\nimport { useServer } from \"graphql-ws/lib/use/ws\";\r\n\r\nconst PORT = process.env.PORT;\r\nconst startServer = async () => {\r\n\tconst app = express();\r\n\tconst httpServer = createServer(app);\r\n\tapp.use(graphqlUploadExpress());\r\n\tapp.use(\"/static\", express.static(\"uploads\"));\r\n\tapp.use(logger(\"tiny\"));\r\n\r\n\tconst wsServer = new WebSocketServer({\r\n\t\tserver: httpServer,\r\n\t\tpath: \"/graphql\",\r\n\t});\r\n\r\n\tconst serverCleanup = useServer({ typeDefs, resolvers }, wsServer);\r\n\r\n\tconst server = new ApolloServer({\r\n\t\tresolvers,\r\n\t\ttypeDefs,\r\n\t\tcontext: async ({ req }) => {\r\n\t\t\tconsole.log(req);\r\n\t\t\tif (req) {\r\n\t\t\t\treturn {\r\n\t\t\t\t\tloggedInUser: await getUser(req.headers.authorization),\r\n\t\t\t\t\tprotectResolver,\r\n\t\t\t\t};\r\n\t\t\t}\r\n\t\t},\r\n\t\tplugins: [\r\n\t\t\tApolloServerPluginDrainHttpServer({ httpServer }),\r\n\r\n\t\t\t{\r\n\t\t\t\tasync serverWillstart() {\r\n\t\t\t\t\treturn {\r\n\t\t\t\t\t\tasync drainServer() {\r\n\t\t\t\t\t\t\tawait serverCleanup.dispose();\r\n\t\t\t\t\t\t},\r\n\t\t\t\t\t};\r\n\t\t\t\t},\r\n\t\t\t},\r\n\t\t],\r\n\t});\r\n\tawait server.start();\r\n\r\n\tserver.applyMiddleware({ app });\r\n\r\n\thttpServer.listen(PORT, () => {\r\n\t\tconsole.log(\r\n\t\t\t`Server is now running on http://localhost:${PORT}${server.graphqlPath}`\r\n\t\t);\r\n\t});\r\n\t// await new Promise((func) => app.listen({ port: PORT }, func));\r\n\t// console.log(`server: http://localhost:${PORT}${server.graphqlPath}`);\r\n};\r\n\r\nstartServer();\r\n"
+        }
+    ]
+}

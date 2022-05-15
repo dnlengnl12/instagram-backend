@@ -1,0 +1,18 @@
+{
+    "sourceFile": "comments/create-comment/create-comment.resolvers.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1652624160086,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1652624160086,
+            "name": "Commit-0",
+            "content": "import client from \"../../client\";\r\nimport { protectedResolver } from \"../../users/users.utils\";\r\n\r\nexport default {\r\n\tMutation: {\r\n\t\tcreateComment: protectedResolver(\r\n\t\t\tasync (_, { photoId, payload }, { loggedInUser }) => {\r\n\t\t\t\tconst ok = await client.photo.findUnique({\r\n\t\t\t\t\twhere: {\r\n\t\t\t\t\t\tid: photoId,\r\n\t\t\t\t\t},\r\n\t\t\t\t\tselect: {\r\n\t\t\t\t\t\tid: true,\r\n\t\t\t\t\t},\r\n\t\t\t\t});\r\n\r\n\t\t\t\tif (!ok) {\r\n\t\t\t\t\treturn {\r\n\t\t\t\t\t\tok: false,\r\n\t\t\t\t\t\terror: \"Photo not found.\",\r\n\t\t\t\t\t};\r\n\t\t\t\t}\r\n\r\n\t\t\t\tconst newComment = await client.comment.create({\r\n\t\t\t\t\tdata: {\r\n\t\t\t\t\t\tpayload,\r\n\t\t\t\t\t\tphoto: {\r\n\t\t\t\t\t\t\tconnect: {\r\n\t\t\t\t\t\t\t\tid: photoId,\r\n\t\t\t\t\t\t\t},\r\n\t\t\t\t\t\t},\r\n\t\t\t\t\t\tuser: {\r\n\t\t\t\t\t\t\tconnect: {\r\n\t\t\t\t\t\t\t\tid: loggedInUser.id,\r\n\t\t\t\t\t\t\t},\r\n\t\t\t\t\t\t},\r\n\t\t\t\t\t},\r\n\t\t\t\t});\r\n\r\n\t\t\t\treturn {\r\n\t\t\t\t\tok: true,\r\n\t\t\t\t\tid: newComment.id,\r\n\t\t\t\t};\r\n\t\t\t}\r\n\t\t),\r\n\t},\r\n};\r\n"
+        }
+    ]
+}

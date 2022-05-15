@@ -1,0 +1,22 @@
+{
+    "sourceFile": "users/users.utils.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1652278231570,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1652278348442,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n \ttry {\r\n \t\tif (!authorization) {\r\n \t\t\treturn null;\r\n \t\t}\r\n-\t\tconsole.log(authorization);\r\n+\r\n \t\tconst { id } = jsonwebtoken.verify(authorization, process.env.SECRET_KEY);\r\n \t\tconst user = await client.user.findUnique({ where: { id } });\r\n \t\tif (user) {\r\n \t\t\treturn user;\r\n"
+                }
+            ],
+            "date": 1652278231570,
+            "name": "Commit-0",
+            "content": "import jsonwebtoken from \"jsonwebtoken\";\r\nimport client from \"../client\";\r\nexport const getUser = async (authorization) => {\r\n\ttry {\r\n\t\tif (!authorization) {\r\n\t\t\treturn null;\r\n\t\t}\r\n\t\tconsole.log(authorization);\r\n\t\tconst { id } = jsonwebtoken.verify(authorization, process.env.SECRET_KEY);\r\n\t\tconst user = await client.user.findUnique({ where: { id } });\r\n\t\tif (user) {\r\n\t\t\treturn user;\r\n\t\t} else {\r\n\t\t\treturn null;\r\n\t\t}\r\n\t} catch (error) {\r\n\t\tconsole.log(error);\r\n\t\treturn null;\r\n\t}\r\n};\r\n\r\nexport const protectedResolver =\r\n\t(ourResolver) => (root, args, context, info) => {\r\n\t\tif (!context.loggedInUser) {\r\n\t\t\tconst query = info.operation.operation === \"query\";\r\n\t\t\tif (query) {\r\n\t\t\t\treturn null;\r\n\t\t\t} else {\r\n\t\t\t\treturn {\r\n\t\t\t\t\tok: false,\r\n\t\t\t\t\terror: \"please log in to perform this action.\",\r\n\t\t\t\t};\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn ourResolver(root, args, context, info);\r\n\t};\r\n\r\nexport const offsetPagination = (pageSize, totalData, where, options) => {\r\n\tconst totalPages = Math.ceil(totalData / pageSize);\r\n\tconst { method } = options;\r\n};\r\n\r\n// export function protectedResolver(ourResolver) {\r\n//     return function(root, args, context, info) {\r\n//         if(!context.loggedInUser) {\r\n//             return {\r\n//                 ok: false,\r\n//                 error: \"Please log in to perform this action.\"\r\n//             }\r\n//         }\r\n//         return ourResolver(root, args, context, info);\r\n//     }\r\n// }\r\n"
+        }
+    ]
+}
