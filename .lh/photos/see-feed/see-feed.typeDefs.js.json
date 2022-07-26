@@ -1,0 +1,18 @@
+{
+    "sourceFile": "photos/see-feed/see-feed.typeDefs.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1658846498215,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1658846498215,
+            "name": "Commit-0",
+            "content": "import { gql } from \"apollo-server-express\";\r\n\r\nexport default gql`\r\n\ttype Query {\r\n\t\tseeFeed(offset: Int!): [Photo]\r\n\t}\r\n`;\r\n"
+        }
+    ]
+}

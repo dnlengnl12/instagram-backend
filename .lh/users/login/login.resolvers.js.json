@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 2,
+            "activePatchIndex": 4,
             "patches": [
                 {
                     "date": 1652277995085,
@@ -16,6 +16,14 @@
                 {
                     "date": 1652278231574,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,12 +13,12 @@\n \t\t\t\t\tok: false,\r\n \t\t\t\t\terror: \"User not found.\",\r\n \t\t\t\t};\r\n \t\t\t}\r\n-\t\t\tconsole.log(user);\r\n+\r\n \t\t\t// check password with args.password\r\n \t\t\tconst passwordOk = await bcrypt.compare(password, user.password);\r\n-\t\t\tconsole.log(passwordOk);\r\n+\r\n \t\t\tif (!passwordOk) {\r\n \t\t\t\treturn {\r\n \t\t\t\t\tok: false,\r\n \t\t\t\t\terror: \"Incorrect password.\",\r\n"
+                },
+                {
+                    "date": 1658148195834,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,8 +32,10 @@\n \t\t\t\t//   expiresIn: \"2 days\",\r\n \t\t\t\t// }\r\n \t\t\t);\r\n \r\n+\t\t\tconsole.log(Authorization);\r\n+\r\n \t\t\treturn {\r\n \t\t\t\tok: true,\r\n \t\t\t\tAuthorization,\r\n \t\t\t};\r\n"
+                },
+                {
+                    "date": 1658149083964,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,10 +32,8 @@\n \t\t\t\t//   expiresIn: \"2 days\",\r\n \t\t\t\t// }\r\n \t\t\t);\r\n \r\n-\t\t\tconsole.log(Authorization);\r\n-\r\n \t\t\treturn {\r\n \t\t\t\tok: true,\r\n \t\t\t\tAuthorization,\r\n \t\t\t};\r\n"
                 }
             ],
             "date": 1652277995085,

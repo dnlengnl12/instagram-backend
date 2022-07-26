@@ -1,0 +1,38 @@
+{
+    "sourceFile": "photos/see-feed/see-feed.resolvers.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 5,
+            "patches": [
+                {
+                    "date": 1658845167526,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1658845598405,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,12 +2,10 @@\n import { protectedResolver } from \"../../users/users.utils\";\r\n \r\n export default {\r\n \tQuery: {\r\n-\t\tseeFeed: protectedResolver(async (_, { offset }, { loggedInUser }) => {\r\n+\t\tseeFeed: protectedResolver(async (_, __, { loggedInUser }) => {\r\n \t\t\treturn client.photo.findMany({\r\n-\t\t\t\ttake: 1,\r\n-\t\t\t\tskip: offset,\r\n \t\t\t\twhere: {\r\n \t\t\t\t\tOR: [\r\n \t\t\t\t\t\t{\r\n \t\t\t\t\t\t\tuser: {\r\n"
+                },
+                {
+                    "date": 1658846097956,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,10 +2,12 @@\n import { protectedResolver } from \"../../users/users.utils\";\r\n \r\n export default {\r\n \tQuery: {\r\n-\t\tseeFeed: protectedResolver(async (_, __, { loggedInUser }) => {\r\n+\t\tseeFeed: protectedResolver(async (_, { offset }, { loggedInUser }) => {\r\n \t\t\treturn client.photo.findMany({\r\n+\t\t\t\ttake: 2,\r\n+\t\t\t\tskip: offset,\r\n \t\t\t\twhere: {\r\n \t\t\t\t\tOR: [\r\n \t\t\t\t\t\t{\r\n \t\t\t\t\t\t\tuser: {\r\n"
+                },
+                {
+                    "date": 1658846320311,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n export default {\r\n \tQuery: {\r\n \t\tseeFeed: protectedResolver(async (_, { offset }, { loggedInUser }) => {\r\n \t\t\treturn client.photo.findMany({\r\n-\t\t\t\ttake: 2,\r\n+\t\t\t\ttake: 1,\r\n \t\t\t\tskip: offset,\r\n \t\t\t\twhere: {\r\n \t\t\t\t\tOR: [\r\n \t\t\t\t\t\t{\r\n"
+                },
+                {
+                    "date": 1658846370064,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n export default {\r\n \tQuery: {\r\n \t\tseeFeed: protectedResolver(async (_, { offset }, { loggedInUser }) => {\r\n \t\t\treturn client.photo.findMany({\r\n-\t\t\t\ttake: 1,\r\n+\t\t\t\ttake: 3,\r\n \t\t\t\tskip: offset,\r\n \t\t\t\twhere: {\r\n \t\t\t\t\tOR: [\r\n \t\t\t\t\t\t{\r\n"
+                },
+                {
+                    "date": 1658846389182,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n export default {\r\n \tQuery: {\r\n \t\tseeFeed: protectedResolver(async (_, { offset }, { loggedInUser }) => {\r\n \t\t\treturn client.photo.findMany({\r\n-\t\t\t\ttake: 3,\r\n+\t\t\t\ttake: 2,\r\n \t\t\t\tskip: offset,\r\n \t\t\t\twhere: {\r\n \t\t\t\t\tOR: [\r\n \t\t\t\t\t\t{\r\n"
+                }
+            ],
+            "date": 1658845167526,
+            "name": "Commit-0",
+            "content": "import client from \"../../client\";\r\nimport { protectedResolver } from \"../../users/users.utils\";\r\n\r\nexport default {\r\n\tQuery: {\r\n\t\tseeFeed: protectedResolver(async (_, { offset }, { loggedInUser }) => {\r\n\t\t\treturn client.photo.findMany({\r\n\t\t\t\ttake: 1,\r\n\t\t\t\tskip: offset,\r\n\t\t\t\twhere: {\r\n\t\t\t\t\tOR: [\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\tuser: {\r\n\t\t\t\t\t\t\t\tfollowers: {\r\n\t\t\t\t\t\t\t\t\tsome: {\r\n\t\t\t\t\t\t\t\t\t\tid: loggedInUser.id,\r\n\t\t\t\t\t\t\t\t\t},\r\n\t\t\t\t\t\t\t\t},\r\n\t\t\t\t\t\t\t},\r\n\t\t\t\t\t\t},\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\tuserId: loggedInUser.id,\r\n\t\t\t\t\t\t},\r\n\t\t\t\t\t],\r\n\t\t\t\t},\r\n\t\t\t\torderBy: {\r\n\t\t\t\t\tcreatedAt: \"desc\",\r\n\t\t\t\t},\r\n\t\t\t});\r\n\t\t}),\r\n\t},\r\n};\r\n"
+        }
+    ]
+}

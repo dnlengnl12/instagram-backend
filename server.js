@@ -30,7 +30,6 @@ const startServer = async () => {
 		resolvers,
 		typeDefs,
 		context: async ({ req }) => {
-			console.log(req);
 			if (req) {
 				return {
 					loggedInUser: await getUser(req.headers.authorization),
